@@ -1,0 +1,230 @@
+#orff-panel {
+  width: 100%;
+  margin: 8px 0 6px;
+  padding: 0 0 6px;
+  color: #202a33;
+  font: 12px/1.35 "Segoe UI", sans-serif;
+}
+
+#orff-panel * {
+  box-sizing: border-box;
+}
+
+#orff-panel .orff-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 10px;
+}
+
+#orff-panel .orff-filter-field {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+  font-weight: 600;
+}
+
+#orff-panel .orff-field-wide,
+#orff-panel .orff-count {
+  grid-column: 1 / -1;
+}
+
+#orff-panel .orff-dropdown {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+#orff-panel .orff-native-combo {
+  width: 100%;
+}
+
+#orff-panel .orff-select-input {
+  cursor: pointer;
+}
+
+#orff-panel .orff-dropdown:not(.orff-native-container) .orff-native-combo {
+  display: flex;
+  min-height: 32px;
+  border: 1px solid color-mix(in srgb, CanvasText 28%, Canvas);
+  background: color-mix(in srgb, CanvasText 7%, Canvas);
+}
+
+#orff-panel .orff-dropdown:not(.orff-native-container) .orff-select-input {
+  min-width: 0;
+  flex: 1;
+  padding: 0 9px;
+  border: 0;
+  color: CanvasText;
+  background: transparent;
+  font: inherit;
+}
+
+#orff-panel .orff-dropdown:not(.orff-native-container) .orff-select-trigger {
+  display: flex;
+  width: 32px;
+  min-height: 30px;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  border: 0;
+  color: CanvasText;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+#orff-panel .orff-dropdown:not(.orff-native-container) .orff-select-trigger:hover,
+#orff-panel .orff-dropdown:not(.orff-native-container):has([aria-expanded="true"]) .orff-native-combo {
+  border-color: color-mix(in srgb, CanvasText 55%, Canvas);
+}
+
+#orff-panel .orff-dropdown:not(.orff-native-container) .orff-select-chevron {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  margin: -4px 2px 0 10px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+#orff-panel .orff-options {
+  position: absolute;
+  z-index: 2147483647;
+  top: calc(100% + 1px);
+  left: 0;
+  width: 100%;
+  max-height: 220px;
+  overflow: auto;
+  padding: 4px 0;
+  border: 1px solid var(--orff-menu-border, #626262);
+  border-radius: 2px;
+  color: var(--orff-menu-text, #f3f3f3);
+  background: var(--orff-menu-background, #292929);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 35%);
+}
+
+#orff-panel .orff-options[hidden] {
+  display: none !important;
+}
+
+#orff-panel[data-theme="light"] .orff-options {
+  --orff-menu-border: #c8c8c8;
+  --orff-menu-text: #242424;
+  --orff-menu-background: #fff;
+}
+
+#orff-panel[data-theme="dark"] .orff-options {
+  --orff-menu-border: #484848;
+  --orff-menu-text: #f3f3f3;
+  --orff-menu-background: #292929;
+}
+
+#orff-panel .orff-menu-main {
+  display: grid;
+}
+
+#orff-panel .orff-option {
+  display: flex;
+  width: 100%;
+  min-height: 36px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 9px;
+  color: inherit;
+  background: transparent;
+  font: 13px/1.4 "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+#orff-panel[data-theme="light"] .orff-option:hover,
+#orff-panel[data-theme="light"] .orff-option[aria-selected="true"] {
+  background: #f3f3f3;
+}
+
+#orff-panel[data-theme="dark"] .orff-option:hover,
+#orff-panel[data-theme="dark"] .orff-option[aria-selected="true"] {
+  background: #3b3b3b;
+}
+
+#orff-panel .orff-option-text {
+  flex: 1;
+}
+
+#orff-panel .orff-option-check {
+  appearance: none;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  place-content: center;
+  margin: 0;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  color: inherit;
+  background: transparent;
+}
+
+#orff-panel .orff-option-check:checked {
+  border-color: #a9a4e6;
+  background: #a9a4e6;
+}
+
+#orff-panel .orff-option-check:checked::before {
+  width: 9px;
+  height: 5px;
+  border-bottom: 2px solid #171717;
+  border-left: 2px solid #171717;
+  content: "";
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+button.orff-clear-active {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+}
+
+#orff-panel .orff-count {
+  padding-top: 6px;
+  color: #45575f;
+  font-variant-numeric: tabular-nums;
+}
+
+.orff-room-result {
+  height: auto !important;
+  min-height: 36px;
+  overflow: visible !important;
+}
+
+.orff-room-result .ms-Persona {
+  height: auto !important;
+  min-height: 36px;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+
+.orff-room-result .ms-Persona-details {
+  height: auto !important;
+  min-height: 36px;
+  overflow: visible !important;
+}
+
+.orff-room-result .ms-Persona-primaryText {
+  display: block;
+  height: auto !important;
+  max-width: 100%;
+  overflow: visible !important;
+  overflow-wrap: anywhere;
+  text-overflow: clip !important;
+  white-space: normal !important;
+}
+
+.orff-room-result.orff-filtered-out {
+  display: none !important;
+}
+
+@media (max-width: 480px) {
+  #orff-panel .orff-controls { grid-template-columns: minmax(0, 1fr); }
+}

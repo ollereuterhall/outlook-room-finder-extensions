@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="pageTitle">[COPY.pageTitle]</title>
+  <link rel="stylesheet" href="popup.css" />
+  <script src="popup.js" defer></script>
+</head>
+<body>
+  <main class="popup">
+    <header class="popup-heading">
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow">[COPY.eyebrow]</p>
+      </div>
+      <label class="toggle" title="[COPY.enableFilters]" data-i18n-attr="title:enableFilters">
+        <input id="enabled-toggle" type="checkbox" aria-label="[COPY.enableFilters]" data-i18n-attr="aria-label:enableFilters" />
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </label>
+    </header>
+
+    <form id="settings-form">
+      <section class="filter-section">
+        <div class="section-heading">
+          <span class="field-title" data-i18n="filtersTitle">[COPY.filtersTitle]</span>
+          <span class="field-help" data-i18n="filtersHelp">[COPY.filtersHelp]</span>
+        </div>
+        <div id="filter-list" class="filter-list"></div>
+        <button id="add-filter" class="add-button" type="button" data-i18n="addFilter">[COPY.addFilter]</button>
+      </section>
+
+      <label class="wrap-option">
+        <input id="wrap-names" type="checkbox" />
+        <span data-i18n="wrapNames">[COPY.wrapNames]</span>
+      </label>
+
+      <footer class="actions">
+        <span id="save-status" role="status" aria-live="polite"></span>
+        <button class="save-button" type="submit" data-i18n="save">[COPY.save]</button>
+      </footer>
+    </form>
+  </main>
+</body>
+</html>
