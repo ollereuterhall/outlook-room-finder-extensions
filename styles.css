@@ -186,6 +186,10 @@ button.orff-clear-active {
   opacity: 1 !important;
 }
 
+button.orff-clear-active .ms-Button-label {
+  color: var(--orff-clear-foreground, inherit) !important;
+}
+
 #orff-panel .orff-count {
   padding-top: 6px;
   color: #45575f;

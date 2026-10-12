@@ -368,22 +368,29 @@
         clearButtonStates.set(button, {
           disabled: button.disabled,
           ariaDisabled: button.getAttribute("aria-disabled"),
-          disabledClass: button.classList.contains("is-disabled")
+          disabledClass: button.classList.contains("is-disabled"),
+          focusable: button.getAttribute("data-is-focusable"),
+          clearForeground: button.style.getPropertyValue("--orff-clear-foreground"),
+          clearForegroundPriority: button.style.getPropertyPriority("--orff-clear-foreground")
         });
       }
       const activate = () => {
         if (button.disabled) button.disabled = false;
         if (button.hasAttribute("disabled")) button.removeAttribute("disabled");
-        if (button.getAttribute("aria-disabled") !== "false") button.setAttribute("aria-disabled", "false");
+        if (button.hasAttribute("aria-disabled")) button.removeAttribute("aria-disabled");
+        if (button.getAttribute("data-is-focusable") !== "true") button.setAttribute("data-is-focusable", "true");
         if (button.classList.contains("is-disabled")) button.classList.remove("is-disabled");
         if (!button.classList.contains("orff-clear-active")) button.classList.add("orff-clear-active");
+        if (context.featuresLabel) {
+          button.style.setProperty("--orff-clear-foreground", getComputedStyle(context.featuresLabel).color);
+        }
       };
       activate();
       if (observedClearButton !== button) {
         clearButtonObserver?.disconnect();
         observedClearButton = button;
         clearButtonObserver = new MutationObserver(activate);
-        clearButtonObserver.observe(button, { attributes: true, attributeFilter: ["disabled", "aria-disabled", "class"] });
+        clearButtonObserver.observe(button, { attributes: true, attributeFilter: ["disabled", "aria-disabled", "data-is-focusable", "class"] });
       }
     } else if (!clearClickInProgress && clearButtonStates.has(button)) {
       const previous = clearButtonStates.get(button);
@@ -396,6 +403,13 @@
       else button.removeAttribute("disabled");
       if (previous.ariaDisabled === null) button.removeAttribute("aria-disabled");
       else button.setAttribute("aria-disabled", previous.ariaDisabled);
+      if (previous.focusable === null) button.removeAttribute("data-is-focusable");
+      else button.setAttribute("data-is-focusable", previous.focusable);
+      if (previous.clearForeground) {
+        button.style.setProperty("--orff-clear-foreground", previous.clearForeground, previous.clearForegroundPriority);
+      } else {
+        button.style.removeProperty("--orff-clear-foreground");
+      }
       button.classList.toggle("is-disabled", previous.disabledClass);
       button.classList.remove("orff-clear-active");
       clearButtonStates.delete(button);
@@ -487,6 +501,12 @@
     resetCustomFilters();
     setTimeout(() => {
       clearClickInProgress = false;
+      const previous = clearButtonStates.get(button);
+      if (previous?.clearForeground) {
+        button.style.setProperty("--orff-clear-foreground", previous.clearForeground, previous.clearForegroundPriority);
+      } else {
+        button.style.removeProperty("--orff-clear-foreground");
+      }
       clearButtonStates.delete(button);
       if (observedClearButton === button) {
         clearButtonObserver?.disconnect();
@@ -496,6 +516,7 @@
       button.disabled = true;
       button.setAttribute("disabled", "");
       button.setAttribute("aria-disabled", "true");
+      button.setAttribute("data-is-focusable", "false");
       button.classList.add("is-disabled");
       button.classList.remove("orff-clear-active");
     }, 0);
