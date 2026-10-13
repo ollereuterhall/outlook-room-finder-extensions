@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 16 16">
+  <title>Room Finder filter</title>
+  <rect width="16" height="16" rx="2" fill="#0067c0"/>
+  <g fill="#fff">
+    <path d="M3 3H10.5V7.5H9V4.5H4.5V13H3Z"/>
+    <path d="M5 5L7.5 6.2V11.8L5 13Z"/>
+    <path d="M8 8.5H14L12 11V13.5H10V11Z"/>
+  </g>
+</svg>

@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Outlook Room Finder Filters",
-  "version": "1.0.0",
+  "name": "Outlook Room Finder Extensions",
+  "version": "1.0.1",
   "description": "Add practical room-name and availability filters to Outlook Room Finder.",
   "permissions": ["storage"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Outlook + 3 room filters",
+    "default_title": "Outlook room finder extensions",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "room-filter-16.png",
